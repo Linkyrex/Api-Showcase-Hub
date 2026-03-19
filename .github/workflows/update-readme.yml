@@ -4,10 +4,10 @@ on:
   push:
     branches: [main]
     paths:
-      - package.json
-      - pnpm-lock.yaml
-      - pnpm-workspace.yaml
-      - .github/workflows/update-readme.yml
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '.github/workflows/update-readme.yml'
   workflow_dispatch:
 
 permissions:
@@ -41,6 +41,14 @@ jobs:
           NODE_VERSION=$(node --version)
           echo "node_version=$NODE_VERSION" >> $GITHUB_OUTPUT
 
+          # Get TypeScript version
+          TS_VERSION=$(pnpm list typescript --depth 0 --json 2>/dev/null | grep -oP '"\d+\.\d+\.\d+"' | head -1 | tr -d '"')
+          echo "ts_version=$TS_VERSION" >> $GITHUB_OUTPUT
+
+          # Get pnpm version
+          PNPM_VERSION=$(pnpm --version)
+          echo "pnpm_version=$PNPM_VERSION" >> $GITHUB_OUTPUT
+
           # Count workspace packages
           PACKAGE_COUNT=$(find . -name "package.json" -not -path "*/node_modules/*" | wc -l)
           echo "package_count=$PACKAGE_COUNT" >> $GITHUB_OUTPUT
@@ -55,18 +63,27 @@ jobs:
 
       - name: Update README.md placeholders
         run: |
+          # Update table values
           sed -i "s/<!-- LAST_UPDATED -->/${LAST_UPDATED}/g" README.md
           sed -i "s/<!-- NODE_VERSION -->/${NODE_VERSION}/g" README.md
           sed -i "s/<!-- PACKAGE_COUNT -->/${PACKAGE_COUNT}/g" README.md
           sed -i "s/<!-- DEPENDENCY_COUNT -->/${DEPENDENCY_COUNT}/g" README.md
+          
+          # Update badges
+          sed -i "s|Node.js-24.x|Node.js-${NODE_VERSION}|g" README.md
+          sed -i "s|TypeScript-5.9+|TypeScript-${TS_VERSION}|g" README.md
+          sed -i "s|pnpm-Workspaces|pnpm-${PNPM_VERSION}|g" README.md
+          sed -i "s|Hosted-Replit|Hosted-GitHub Pages|g" README.md
         env:
           LAST_UPDATED: ${{ steps.build-info.outputs.timestamp }}
           NODE_VERSION: ${{ steps.build-info.outputs.node_version }}
+          TS_VERSION: ${{ steps.build-info.outputs.ts_version }}
+          PNPM_VERSION: ${{ steps.build-info.outputs.pnpm_version }}
           PACKAGE_COUNT: ${{ steps.build-info.outputs.package_count }}
           DEPENDENCY_COUNT: ${{ steps.build-info.outputs.dependency_count }}
 
       - name: Commit and push
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "docs: Update README build info"
+          commit_message: "docs: Update README badges and build info"
           file_pattern: "README.md"
