@@ -1,0 +1,15 @@
+packages:
+  "framer-motion": "For premium smooth animations and expanding cards"
+  "clsx": "Utility for constructing className strings"
+  "tailwind-merge": "Utility for merging tailwind classes to avoid conflicts"
+  "lucide-react": "Beautiful icons for the UI"
+
+images:
+  - path: "artifacts/api-explorer/public/images/hero-bg.png"
+    description: "Premium, ultra-dark abstract background with deep navy and subtle neon cyan and electric purple light leaks. Clean, professional developer aesthetic with subtle geometric grid patterns."
+    aspect_ratio: "21:9"
+
+notes:
+  - Application is entirely frontend-driven calling public open APIs
+  - Using TanStack query via custom mutation hook for manual request triggering
+  - Replaced native select dropdowns with premium selectable pill buttons for better UX
