@@ -1,0 +1,72 @@
+name: Update README
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '.github/workflows/update-readme.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Extract build info
+        id: build-info
+        run: |
+          # Get Node.js version
+          NODE_VERSION=$(node --version)
+          echo "node_version=$NODE_VERSION" >> $GITHUB_OUTPUT
+
+          # Count workspace packages
+          PACKAGE_COUNT=$(find . -name "package.json" -not -path "*/node_modules/*" | wc -l)
+          echo "package_count=$PACKAGE_COUNT" >> $GITHUB_OUTPUT
+
+          # Count total dependencies
+          DEP_COUNT=$(pnpm ls --depth 0 --parseable 2>/dev/null | wc -l || echo "0")
+          echo "dependency_count=$DEP_COUNT" >> $GITHUB_OUTPUT
+
+          # Get current timestamp
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+          echo "timestamp=$TIMESTAMP" >> $GITHUB_OUTPUT
+
+      - name: Update README.md placeholders
+        run: |
+          sed -i "s/<!-- LAST_UPDATED -->/${LAST_UPDATED}/g" README.md
+          sed -i "s/<!-- NODE_VERSION -->/${NODE_VERSION}/g" README.md
+          sed -i "s/<!-- PACKAGE_COUNT -->/${PACKAGE_COUNT}/g" README.md
+          sed -i "s/<!-- DEPENDENCY_COUNT -->/${DEPENDENCY_COUNT}/g" README.md
+        env:
+          LAST_UPDATED: ${{ steps.build-info.outputs.timestamp }}
+          NODE_VERSION: ${{ steps.build-info.outputs.node_version }}
+          PACKAGE_COUNT: ${{ steps.build-info.outputs.package_count }}
+          DEPENDENCY_COUNT: ${{ steps.build-info.outputs.dependency_count }}
+
+      - name: Commit and push
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: Update README build info"
+          file_pattern: "README.md"
