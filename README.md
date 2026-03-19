@@ -9,12 +9,12 @@
 ![License](https://img.shields.io/github/license/Linkyrex/Api-Showcase-Hub?style=flat)
 ![Last Commit](https://img.shields.io/github/last-commit/Linkyrex/Api-Showcase-Hub/main?style=flat&label=Last+Commit)
 
-[![Node.js](https://img.shields.io/badge/Node.js-24.x-339933?style=flat&logo=node.js)](https://nodejs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9+-3178c6?style=flat&logo=typescript)](https://www.typescriptlang.org)
-[![pnpm](https://img.shields.io/badge/pnpm-Workspaces-fabf2f?style=flat&logo=pnpm)](https://pnpm.io)
+[![Node.js](https://img.shields.io/badge/Node.js-v24.14.0-339933?style=flat&logo=node.js)](https://nodejs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-0.0.0-3178c6?style=flat&logo=typescript)](https://www.typescriptlang.org)
+[![pnpm](https://img.shields.io/badge/pnpm-9.15.9-fabf2f?style=flat&logo=pnpm)](https://pnpm.io)
 [![Express](https://img.shields.io/badge/Express-5-000000?style=flat&logo=express)](https://expressjs.com)
 [![Drizzle ORM](https://img.shields.io/badge/Drizzle-ORM-6ad07e?style=flat)](https://orm.drizzle.team)
-[![Replit](https://img.shields.io/badge/Hosted-Replit-2ecc71?style=flat&logo=replit)](https://replit.com/@linkyrex/Api-Showcase-Hub)
+[![Replit](https://img.shields.io/badge/Hosted-GitHub Pages-2ecc71?style=flat&logo=replit)](https://replit.com/@linkyrex/Api-Showcase-Hub)
 
 </div>
 
