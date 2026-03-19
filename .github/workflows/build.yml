@@ -1,61 +1,60 @@
 name: Build
 
-
 on:
   push:
     branches: [main]
     paths:
-      '.**.ts'
-      '.**.json'
-      'tconfig*.json'
-      'ppm-lock.yaml'
+      - '**.ts'
+      - '**.json'
+      - 'tsconfig*.json'
+      - 'pnpm-lock.yaml'
   pull_request:
     branches: [main]
 
 jobs:
   typecheck:
-    runs-on* ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-       - name: Setup ppm
-        uses: ppm/action-setup@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
           version: 9
 
-        - name: Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '24'
-          cache: 'ppm'
+          cache: 'pnpm'
 
-       - name: Install dependencies
-        run: ppm install --no-frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install
 
-        - name: TypeScript type check
-        run: prm run typecheck
+      - name: TypeScript type check
+        run: pnpm run typecheck
 
- build:
+  build:
     runs-on: ubuntu-latest
     needs: typecheck
     steps:
       - name: Checkout
-        uses: actions/checkout@2
+        uses: actions/checkout@v4
 
-        - name: Setup ppm
-        uses: ppm/action-setup@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
           version: 9
 
-        - name: Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '24'
-          cache: 'ppm'
+          cache: 'pnpm'
 
-       - name: Install dependencies
-        run: ppm install --no-frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install
 
-        - name: Build all packages
-        run: prm run build
+      - name: Build all packages
+        run: pnpm run build
