@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Linkyrex/Api-Showcase-Hub/build.yml?branch=main&style=flat&label=Build)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Linkyrex/Api-Showcase-Hub/deploy.yml?branch=main&style=flat&label=Deploy)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Linkyrex/Api-Showcase-Hub/update-readme.yml?branch=main&style=flat&label=Readme)
 ![TypeScript](https://img.shields.io/github/languages/top/Linkyrex/Api-Showcase-Hub?style=flat)
 ![Version](https://img.shields.io/github/package-json/v/Linkyrex/Api-Showcase-Hub?style=flat&label=Version)
