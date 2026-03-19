@@ -51,7 +51,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-accent mb-8"
             >
               <Cpu className="w-4 h-4" />
-              12 Public APIs · No Keys Required
+              {API_COLLECTION.length} Public APIs · No Keys Required
             </motion.div>
             
             <motion.h1 
