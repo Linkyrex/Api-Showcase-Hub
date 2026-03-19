@@ -4,10 +4,10 @@ on:
   push:
     branches: [main]
     paths:
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-      - 'pnpm-workspace.yaml'
-      - '.github/workflows/update-readme.yml'
+      - package.json
+      - pnpm-lock.yaml
+      - pnpm-workspace.yaml
+      - .github/workflows/update-readme.yml
   workflow_dispatch:
 
 permissions:
@@ -32,7 +32,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: Extract build info
         id: build-info
