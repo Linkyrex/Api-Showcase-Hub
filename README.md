@@ -24,10 +24,10 @@
 
 | Metric | Value |
 |--------|-------|
-| **Last Updated** | <!-- LAST_UPDATED --> |
-| **Node.js** | <!-- NODE_VERSION --> |
-| **Workspace Packages** | <!-- PACKAGE_COUNT --> |
-| **Dependencies** | <!-- DEPENDENCY_COUNT --> |
+| **Last Updated** | 2026-03-19 15:27 UTC |
+| **Node.js** | v24.14.0 |
+| **Workspace Packages** | 9 |
+| **Dependencies** | 3 |
 
 ---
 
