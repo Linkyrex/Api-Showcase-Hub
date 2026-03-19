@@ -14,7 +14,7 @@
 [![pnpm](https://img.shields.io/badge/pnpm-9.15.9-fabf2f?style=flat&logo=pnpm)](https://pnpm.io)
 [![Express](https://img.shields.io/badge/Express-5-000000?style=flat&logo=express)](https://expressjs.com)
 [![Drizzle ORM](https://img.shields.io/badge/Drizzle-ORM-6ad07e?style=flat)](https://orm.drizzle.team)
-[![Replit](https://img.shields.io/badge/Hosted-GitHub Pages-2ecc71?style=flat&logo=replit)](https://replit.com/@linkyrex/Api-Showcase-Hub)
+[![GitHub Pages](https://img.shields.io/badge/Hosted-GitHub_Pages-327fc7?style=flat)](https://linkyrex.github.io/Api-Showcase-Hub)
 
 </div>
 
@@ -31,7 +31,7 @@
 
 ---
 
-A pnpm monorepo showcasing a full-stack TypeScript API with Express 5, Drizzle ORM, and OpenAPI code generation.
+A pnpm monorepo showcasing a full-stack TypeScript API with Express 5, Drizzle ORM, and OpenAPI code generation. Deployed to GitHub Pages.
 
 ## ✨ Features
 
@@ -40,6 +40,10 @@ A pnpm monorepo showcasing a full-stack TypeScript API with Express 5, Drizzle O
 - **OpenAPI Code Generation** — Orval generates Zod schemas and React Query hooks from `openapi.yaml`
 - **pnpm Workspaces** — Monorepo structure with shared libraries and independent dependency management
 - **TypeScript Composite Projects** — Project references for incremental type-checking
+
+## 🚀 Live
+
+**Dashboard**: https://linkyrex.github.io/Api-Showcase-Hub/
 
 ## 📁 Project Structure
 
@@ -58,18 +62,6 @@ api-showcase-hub/
 ├── pnpm-workspace.yaml    # Workspace configuration
 └── package.json           # Root package (devDeps only)
 ```
-
-## 🚀 Quick Start
-
-```bash
-# Clone and install
-pnpm install
-
-# Start the API server
-pnpm --filter @workspace/api-server run dev
-```
-
-Server runs at `http://localhost:3000` with health check at `/api/health`.
 
 ## 📦 Installation
 
@@ -128,44 +120,6 @@ pnpm --filter @workspace/api-spec run codegen
 | `@workspace/api-client-react` | Generated React Query hooks |
 | `@workspace/scripts` | Utility scripts |
 
-## 🌐 API Endpoints
-
-### GET /api/health
-
-Health check endpoint.
-
-```bash
-curl http://localhost:3000/api/health
-```
-
-**Response:**
-```json
-{
-  "status": "ok",
-  "timestamp": "2026-03-19T14:00:00.000Z"
-}
-```
-
-## ⚙️ Configuration
-
-### Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `DATABASE_URL` | PostgreSQL connection string | ✅ Yes |
-| `PORT` | Server port (default: 3000) | ❌ No |
-| `NODE_ENV` | Environment (development/production) | ❌ No |
-
-### TypeScript Project References
-
-Always run typecheck from the root:
-
-```bash
-pnpm run typecheck
-```
-
-> Running `tsc` inside a single package will fail if its dependencies haven't been built yet. The root script uses `tsc --build` which resolves the full dependency graph.
-
 ## 🛠️ Development
 
 ```bash
@@ -174,9 +128,6 @@ pnpm --filter @workspace/api-server run dev
 
 # Add a dependency to a workspace package
 pnpm --filter @workspace/api-server add express
-
-# Run a script from the scripts package
-pnpm --filter @workspace/scripts run <script-name>
 ```
 
 ## 🏗️ Tech Stack
@@ -194,4 +145,4 @@ pnpm --filter @workspace/scripts run <script-name>
 
 ## 📄 License
 
-MIT
+Apache 2.0
